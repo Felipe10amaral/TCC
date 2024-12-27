@@ -3,6 +3,7 @@ import {useFonts, Roboto_700Bold, Roboto_400Regular} from '@expo-google-fonts/ro
 import { Center, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 import { config } from './config/gluestack-ui.config';
 import { Loading } from './src/components/Loading';
+import { User } from './src/screens/User';
 
 export default function App() {
 
@@ -15,13 +16,7 @@ export default function App() {
         translucent
       />
       
-      {fontsLoad ? (
-        <Center flex={1} bg="$gray700">
-          <Text>Home</Text>
-        </Center>
-      ) : (
-        <Loading />
-      )}
+      {fontsLoad ? <User /> : <Loading />}
     </GluestackUIProvider>
   );
 }
