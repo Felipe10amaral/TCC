@@ -13,8 +13,8 @@ export function User() {
 
             <Center gap="$2">
                 <Input placeholder="Nome" />
-                <Input placeholder="e-mail" keyboardType={"numeric"} />
-                <Input placeholder="senha" keyboardType={"visible-password"} />
+                <Input placeholder="e-mail" keyboardType={"email-address"} />
+                <Input placeholder="senha"  />
             </Center>
         </VStack>
     )
