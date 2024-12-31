@@ -1,5 +1,6 @@
 import { Center, VStack, Text } from "@gluestack-ui/themed";
 import { Input } from "../components/Input";
+import { Button } from "../components/Button";
 
 export function User() {
 
@@ -13,8 +14,10 @@ export function User() {
 
             <Center gap="$2">
                 <Input placeholder="Nome" />
-                <Input placeholder="e-mail" keyboardType={"email-address"} />
-                <Input placeholder="senha"  />
+                <Input placeholder="e-mail" keyboardType={"email-address"} autoCapitalize="none"/>
+                <Input placeholder="senha" secureTextEntry />
+
+                <Button title="Cadastrar"  />
             </Center>
         </VStack>
     )
