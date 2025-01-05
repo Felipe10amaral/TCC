@@ -2,6 +2,7 @@ import {FastifyRequest, FastifyReply} from 'fastify'
 import {z} from 'zod'
 import { RegisterUser } from '../../UseCases/User/RegisterUser'
 import { UserPrismaRepository } from '../../Repositories/User/UserPrismaRepository'
+import { UserAlreadyExists } from '../../UseCases/Errors/UserAlreadyExists'
 
 export async function register (request:FastifyRequest, reply: FastifyReply)  {
     const registerBodySchema = z.object({
@@ -18,7 +19,10 @@ export async function register (request:FastifyRequest, reply: FastifyReply)  {
 
         await registerUser.execute({name, email, password})
     } catch (error: any) {
-        return reply.status(409).send({error: error.message})
+        if(error instanceof UserAlreadyExists){
+            return reply.status(409).send({error: error.message})
+        }
+        throw error
     }
 
     return reply.status(201).send()
