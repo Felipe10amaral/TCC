@@ -8,7 +8,7 @@
     "test:watch":"vitest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Felipe Amaral",
   "license": "ISC",
   "description": "",
   "devDependencies": {

@@ -13,18 +13,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
+model Client {
+  id         Int          @id @default(autoincrement())
+  name       String
+  email      String       @unique
+  password   String
+  phone      String?
+  address    Address?
+  evaluation Evaluation[] // 1:N com Avaliação
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Professional {
-  id         String @id @default(uuid())
+  id         Int          @id @default(autoincrement())
   name       String
-  email      String @unique
+  email      String       @unique
   password   String
-  profession String
-  phone      String
+  phone      String?
+  address    Address?
+  services   Service[] // 1:N com Servico
+  evaluation Evaluation[] // 1:N com Avaliação
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Service {
+  id             Int          @id @default(autoincrement())
+  name           String
+  description    String
+  price          Float
+  professionalId Int
+  professional   Professional @relation(fields: [professionalId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Evaluation {
+  id             Int     @id @default(autoincrement())
+  point          Int
+  feedback       String?
+  clientId       Int
+  professionalId Int
+
+  client       Client       @relation(fields: [clientId], references: [id])
+  profissional Professional @relation(fields: [professionalId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Address {
+  id     Int    @id @default(autoincrement())
+  rua    String
+  numero String
+  bairro String
+  cidade String
+  estado String
+  cep    String
+
+  clientId       Int? @unique
+  professionalId Int? @unique
+
+  client       Client?       @relation(fields: [clientId], references: [id])
+  profissional Professional? @relation(fields: [professionalId], references: [id])
 }

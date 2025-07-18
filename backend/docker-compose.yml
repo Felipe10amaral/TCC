@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  api-app-ConstrApp:
+  app-constr:
     image: bitnami/postgresql
     ports:
       - 5432:5432

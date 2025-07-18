@@ -13,3 +13,6 @@
 #Requisitos não funcional
 - [ ] A senha do usuário precisa estar criptografada;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
+
+Executar o serviço do Banco de dados 
+* docker compose up
