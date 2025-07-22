@@ -13,14 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
-  id         Int          @id @default(autoincrement())
-  name       String
-  email      String       @unique
-  password   String
-  phone      String?
-  address    Address?
-  evaluation Evaluation[] // 1:N com Avaliação
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+  phone    String?
+  address  String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -32,7 +31,7 @@ model Professional {
   email      String       @unique
   password   String
   phone      String?
-  address    Address?
+  adress     String
   services   Service[] // 1:N com Servico
   evaluation Evaluation[] // 1:N com Avaliação
 
@@ -59,25 +58,8 @@ model Evaluation {
   clientId       Int
   professionalId Int
 
-  client       Client       @relation(fields: [clientId], references: [id])
   profissional Professional @relation(fields: [professionalId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model Address {
-  id     Int    @id @default(autoincrement())
-  rua    String
-  numero String
-  bairro String
-  cidade String
-  estado String
-  cep    String
-
-  clientId       Int? @unique
-  professionalId Int? @unique
-
-  client       Client?       @relation(fields: [clientId], references: [id])
-  profissional Professional? @relation(fields: [professionalId], references: [id])
 }
