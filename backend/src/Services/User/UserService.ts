@@ -1,4 +1,5 @@
 import { hash } from "bcryptjs";
+import { UsersRepository } from "../../Repositories/UsersRepository";
 
 
 interface RegisterServicesRequest {
@@ -9,16 +10,12 @@ interface RegisterServicesRequest {
     phone: string;
 }
 export class RegisterUseCase {
-    constructor(private usersRepository: any) {}
+    constructor(private usersRepository: UsersRepository) {}
 
     async execute({ name, email, password, address, phone }: RegisterServicesRequest) {
         const passwordHash = await hash(password, 6);
 
-        const userWithSameEmail = await this.usersRepository.findUnique({
-            where: {
-                email,
-            },
-        })
+        const userWithSameEmail = await this.usersRepository.findEmail(email);
 
         if(userWithSameEmail) {
             throw new Error("User already exists");
