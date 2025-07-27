@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { UsersRepository } from "../../Repositories/UsersRepository";
+import { IUsersRepository } from "../../Repositories/UsersRepository";
 import { UserAlreadyExistsError } from "../../Errors/Users/UserAlreadExists";
 
 
@@ -11,7 +11,7 @@ interface RegisterServicesRequest {
     phone: string;
 }
 export class RegisterUseCase {
-    constructor(private usersRepository: UsersRepository) {}
+    constructor(private usersRepository: IUsersRepository) {}
 
     async execute({ name, email, password, address, phone }: RegisterServicesRequest) {
         const passwordHash = await hash(password, 6);
@@ -30,6 +30,8 @@ export class RegisterUseCase {
             phone
         });
 
-        return user;
+        return {
+            user,
+        };
     }
 }
