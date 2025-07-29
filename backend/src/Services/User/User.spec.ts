@@ -34,7 +34,7 @@ describe('Register UseCase', () => {
         phone: '11999999999'
     })
 
-    const isHashed = await await compare(
+    const isHashed = await compare(
         '123456',
         user.password
     )
@@ -56,7 +56,7 @@ describe('Register UseCase', () => {
         phone: '11999999999'
     })
 
-    expect(() => registerUseCase.execute({
+    await expect(() => registerUseCase.execute({
         name: 'John Doe',
         email: email,
         address:'rua do canto',
