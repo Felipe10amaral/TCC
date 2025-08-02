@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { IUsersRepository } from "../../Repositories/UsersRepository";
+import { IUsersRepository } from "../../Interface/IUsersRepository";
 import { UserAlreadyExistsError } from "../../Errors/Users/UserAlreadExists";
 
 
