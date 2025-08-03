@@ -10,8 +10,14 @@ export class PrismaProfessionalRepository implements IProfessionalRepository {
 
         return professional;
     }
-    findByEmail(email: string): Promise<Professional | null> {
-        throw new Error("Method not implemented.");
+    async findByEmail(email: string): Promise<Professional | null> {
+        const professional = await prisma.professional.findUnique({
+            where:{
+                email
+            }
+        })
+
+        return professional;
     }
     findById(id: number): Promise<Professional | null> {
         throw new Error("Method not implemented.");
