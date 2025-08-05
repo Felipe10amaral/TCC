@@ -1,4 +1,4 @@
-import { expect, test, describe, it, beforeEach } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { RegisterUseCase } from './UserService';
 import { compare } from 'bcryptjs';
 import { InMemoryUserRepository } from '../../Repositories/in-memory/in-memory.user.repository';
