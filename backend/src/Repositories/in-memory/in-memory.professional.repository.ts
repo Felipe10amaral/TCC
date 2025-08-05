@@ -20,14 +20,19 @@ export class InMemoruProfessionalRepository implements IProfessionalRepository {
 
         return professional
     }
-    findByEmail(email: string): Promise<Professional | null> {
-        throw new Error("Method not implemented.");
+    async findByEmail(email: string): Promise<Professional | null> {
+        const professional = this.professionals.find(user => user.email === email);
+        if(!professional) {
+            return null;
+        }
+        return professional;
     }
-    findById(id: number): Promise<Professional | null> {
-        throw new Error("Method not implemented.");
+    
+    async findById(id: number): Promise<Professional | null> {
+        return null
     }
-    findAll(): Promise<Professional[]> {
-        throw new Error("Method not implemented.");
+    async findAll(): Promise<Professional[]> {
+        return this.professionals
     }
 
 }
