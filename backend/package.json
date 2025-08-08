@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "test": "vitest run",
-    "test:watch":"vitest",
+    "test:watch": "vitest",
     "test:coverage": "viteste --coverage"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "vitest": "2.1.8"
   },
   "dependencies": {
+    "@fastify/jwt": "9.1.0",
     "@prisma/client": "6.1.0",
     "bcryptjs": "2.4.3",
     "dotenv": "16.4.7",
