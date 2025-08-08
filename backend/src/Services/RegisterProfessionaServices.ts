@@ -1,3 +1,4 @@
+import { hash } from "bcryptjs";
 import { ProfessionalAlreadyExistsError } from "../Errors/Professional/ProfessionaAlreadyExists";
 import { IProfessionalRepository } from "../Interface/IProfessionalRepository";
 
@@ -27,10 +28,12 @@ export class RegisterProfessionalServices {
             throw new ProfessionalAlreadyExistsError();
         }
 
+        const passwordHash = await hash(password, 6);
+
         const professional = await this.professionalRepository.create({
             name,
             email,
-            password,
+            password :passwordHash,
             adress,
             phone
         });
